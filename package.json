@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/Appium-Labs/Ecommerce-app-backend/issues"
   },
-  "homepage": "https://github.com/Appium-Labs/Ecommerce-app-backend#readme"
+  "homepage": "https://github.com/Appium-Labs/Ecommerce-app-backend#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0",
+    "nodemon": "^2.0.21"
+  }
 }
