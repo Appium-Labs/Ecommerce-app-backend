@@ -20,5 +20,9 @@ const app = express();
 
 app.use(express.json({ extended: false }));
 
+app.use("/api/products", require("./Routes/ProductRoutes"));
+app.use("/api/orders", require("./Routes/OrderRoutes"));
+app.use("/api/cards", require("./Routes/CardRoutes"));
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Server started on port " + PORT));
