@@ -5,8 +5,9 @@ const OrderSchema = Schema({
     type: Schema.Types.ObjectId,
     ref: "product",
   },
-  data_of_purchase: {
-    type: Date,
+
+  date_of_purchase: {
+    type: String,
     required: true,
   },
 });

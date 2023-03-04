@@ -1,5 +1,5 @@
 const express = require("express");
-// const path = require("path");
+const path = require("path");
 const mongoose = require("mongoose");
 require("dotenv").config({ path: "./config.env" });
 
@@ -20,9 +20,12 @@ const app = express();
 
 app.use(express.json({ extended: false }));
 
+app.use("/images", express.static(path.join(__dirname, "/images")));
+
 app.use("/api/products", require("./Routes/ProductRoutes"));
 app.use("/api/orders", require("./Routes/OrderRoutes"));
 app.use("/api/cards", require("./Routes/CardRoutes"));
+app.use("/api/uploads", require("./Routes/UploadRoutes"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Server started on port " + PORT));
