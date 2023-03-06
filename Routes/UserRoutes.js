@@ -12,4 +12,9 @@ router
   .get(userController.getCurrentUserProfile)
   .post(userController.updateUserprofile);
 
+router.route("/addtocart").post(userController.addToCart);
+router.route("/addtofav").post(userController.addToFav);
+router.route("/addcard").post(userController.addToFav);
+router.route("/addorder").post(userController.addToFav);
+
 module.exports = router;
