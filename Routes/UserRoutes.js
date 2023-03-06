@@ -14,7 +14,7 @@ router
 
 router.route("/addtocart").post(userController.addToCart);
 router.route("/addtofav").post(userController.addToFav);
-router.route("/addcard").post(userController.addToFav);
-router.route("/addorder").post(userController.addToFav);
+router.route("/addcard").post(userController.addCard);
+router.route("/addorder").post(userController.addToOrders);
 
 module.exports = router;
