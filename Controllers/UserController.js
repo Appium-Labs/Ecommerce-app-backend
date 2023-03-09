@@ -217,3 +217,39 @@ exports.addToOrders = async (req, res, next) => {
     });
   }
 };
+
+exports.removeFromCart = async (req, res, next) => {
+  try {
+    const { user_id, product_id } = req.body;
+    const user = await User.findOneAndUpdate(
+      { _id: user_id },
+      { $pull: { cart_items: product_id } }
+    );
+    res.status(201).json({
+      user,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "Failed",
+      message: `Unable to remove from cart: ${err}`,
+    });
+  }
+};
+
+exports.removefromfav = async (req, res, next) => {
+  try {
+    const { user_id, product_id } = req.body;
+    const user = await User.findOneAndUpdate(
+      { _id: user_id },
+      { $pull: { favourites: product_id } }
+    );
+    res.status(201).json({
+      user,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "Failed",
+      message: `Unable to remove from cart: ${err}`,
+    });
+  }
+};
