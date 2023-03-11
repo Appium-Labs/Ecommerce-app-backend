@@ -21,10 +21,7 @@ exports.createUser = async (req, res, next) => {
     const newUser = await User.create(req.body);
     res.status(201).json({
       status: "Success",
-      data: {
-        token: generateToken(newUser._id),
-        user: newUser,
-      },
+      user_id: newUser._id,
     });
   } catch (err) {
     console.log(err);
