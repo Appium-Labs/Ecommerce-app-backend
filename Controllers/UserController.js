@@ -78,15 +78,12 @@ exports.updateUserprofile = async (req, res, next) => {
 exports.authenticateUser = async (req, res, next) => {
   try {
     const { password, email } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email });
     console.log(user.password);
     if (user && (await comparePassword(password, user.password))) {
       res.status(201).json({
         status: "Success",
-        data: {
-          token: generateToken(user._id),
-          user: user,
-        },
+        user_id: user._id,
       });
     } else {
       res.status(404).json({
