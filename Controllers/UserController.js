@@ -83,7 +83,7 @@ exports.authenticateUser = async (req, res, next) => {
         user_id: user._id,
       });
     } else {
-      res.status(404).json({
+      res.status(401).json({
         status: "Failed",
         message: `password does not match`,
       });
