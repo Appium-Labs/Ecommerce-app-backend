@@ -1,5 +1,6 @@
 const express = require("express");
 const userController = require("../Controllers/UserController");
+const stripeController = require("../Controllers/StripeController");
 
 const router = express.Router();
 
@@ -18,5 +19,6 @@ router.route("/addcard").post(userController.addCard);
 router.route("/addorder").post(userController.addToOrders);
 router.route("/removefromcart").post(userController.removeFromCart);
 router.route("/removefromfav").post(userController.removefromfav);
+router.route("/makepayment").post(stripeController.makeMakePayment)
 
 module.exports = router;
