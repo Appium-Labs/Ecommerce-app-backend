@@ -1,13 +1,17 @@
 const Order = require("../Models/OrderModel");
+const User = require("../Models/UserModel");
 
 exports.createOrder = async (req, res, next) => {
   try {
     const newOrder = await Order.create(req.body);
+    const user = await User.findOneAndUpdate(
+      { _id: req.body.user_id },
+      { $push: { order_history: newOrder._id } }
+    );
+    user.save();
     res.status(201).json({
       status: "Success",
-      data: {
-        order: newOrder,
-      },
+      order: newOrder,
     });
   } catch (err) {
     console.log(err);
@@ -38,12 +42,10 @@ exports.getAllOrders = async (req, res, next) => {
 
 exports.getOrderById = async (req, res, next) => {
   try {
-    const order = await Order.findById(req.params.id);
+    const order = await Order.findById(req.params.id).populate("product_id");
     res.status(201).json({
       status: "Success",
-      data: {
-        order: order,
-      },
+      order,
     });
   } catch (err) {
     console.log(err);

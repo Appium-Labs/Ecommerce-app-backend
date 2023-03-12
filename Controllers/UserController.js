@@ -21,10 +21,7 @@ exports.createUser = async (req, res, next) => {
     const newUser = await User.create(req.body);
     res.status(201).json({
       status: "Success",
-      data: {
-        token: generateToken(newUser._id),
-        user: newUser,
-      },
+      user_id: newUser._id,
     });
   } catch (err) {
     console.log(err);
@@ -78,18 +75,15 @@ exports.updateUserprofile = async (req, res, next) => {
 exports.authenticateUser = async (req, res, next) => {
   try {
     const { password, email } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email });
     console.log(user.password);
     if (user && (await comparePassword(password, user.password))) {
       res.status(201).json({
         status: "Success",
-        data: {
-          token: generateToken(user._id),
-          user: user,
-        },
+        user_id: user._id,
       });
     } else {
-      res.status(404).json({
+      res.status(401).json({
         status: "Failed",
         message: `password does not match`,
       });
