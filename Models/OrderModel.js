@@ -5,7 +5,18 @@ const OrderSchema = Schema({
     type: Schema.Types.ObjectId,
     ref: "product",
   },
-
+  delivery_status: {
+    type: Boolean,
+    required: true,
+  },
+  shipping_address: {
+    type: "String",
+    required: true,
+  },
+  phone: {
+    type: Number,
+    required: true,
+  },
   date_of_purchase: {
     type: String,
     required: true,
